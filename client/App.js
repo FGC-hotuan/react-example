@@ -9,6 +9,7 @@ import LoginForm from "./components/login/login";
 import Dashboard from "./components/dashboard/dashboard";
 import User from './app/user/User'
 import Product from "./app/product/Product";
+import News from "./app/news/News";
 
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route
@@ -29,19 +30,11 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/login" component={LoginForm}/>
 
-                        <PrivateRoute exact path="/" component={Dashboard}/>
+                        <Route exact path="/" component={Dashboard}/>
+
                         <PrivateRoute path="/user" component={User} />
                         <PrivateRoute path="/product" component={Product} />
-                        {/*<Route exact path='/' component={RequireAuth(Dashboard)} />*/}
-                        {/*<Route exact path='/' component={Dashboard} />*/}
-                        {/*<Route path="/products" component={RequireAuth(Product)}>*/}
-                        {/*<IndexRoute component={ProductList}/>*/}
-                        {/*<Route path="new" component={ProductForm}/>*/}
-                        {/*<Route path=":id" component={ProductForm}/>*/}
-                        {/*<Route path=":id/view" component={ProductDetail}/>*/}
-                        {/*</Route>*/}
-                        {/*</Route>*/}
-                        {/*<PrivateRoute exact path="/" component={Dashboard}/>*/}
+                        <PrivateRoute path="/news" component={News} />
 
                         <Route path="*" component={NotFoundPage}/>
                     </Switch>

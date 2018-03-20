@@ -23,6 +23,7 @@
     "react": "^16.2.0",
     "react-cookie": "^2.1.4",
     "react-dom": "^16.2.0",
+    "react-paginate": "^5.2.1",
     "react-redux": "^5.0.7",
     "react-redux-toastr": "^7.2.3",
     "react-router": "^4.2.0",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "webpack": "^4.1.1",

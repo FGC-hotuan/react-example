@@ -15,7 +15,7 @@ class NewsController extends Controller{
 
     public function index()
     {
-        $news = News::paginate(10);
+        $news = News::paginate(1);
         return $this->response->paginator($news, new NewsTransformer);
     }
 
