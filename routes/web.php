@@ -40,4 +40,7 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers'], function ($api) {
         $api->put('product/{id}', 'ProductController@update');
         $api->delete('product/{id}', 'ProductController@destroy');
     });
+    $api->get('t','NewsController@index');
+    $api->post('t','NewsController@store');
+//    $api->post('t','NewsController@update');
 });
