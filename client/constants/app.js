@@ -1,6 +1,6 @@
 const AppConstant = {
-    API_URL: 'http://dev.pc.vn/api/',
-    ROOT_URL: 'http://dev.pc.vn:8080/#/',
+    API_URL: 'http://dev.site.vn/api/',
+    ROOT_URL: 'http://dev.site.vn:8080/#/',
     // API_URL: 'http://dev.react.com/api/',
     // ROOT_URL: 'http://dev.react.com/#/',
     AUTHORIZATION: 'Authorization',
