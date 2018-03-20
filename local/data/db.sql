@@ -1,0 +1,8 @@
+
+CREATE DATABASE react CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+USE mysql;
+
+CREATE USER 'react'@'localhost' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON react.* TO 'react'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
