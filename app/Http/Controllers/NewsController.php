@@ -15,45 +15,72 @@ class NewsController extends Controller{
     public function index()
     {
 
-        $news = News::paginate(1);
+        $news = News::paginate(4);
         return response()->json($news);
     }
 
-    public function create()
-    {
-
-    }
-
+    /*
+     * parameter $request['title', 'content',..] is require
+     * return to json [string 'status', string 'message']
+     * if OK: status is 'ok'
+     * else status is 'uFails'
+     * */
     public function store(Request $request)
     {
-        $news = new News();
-        if($request->has(['title','content'])) {
-            $news->title = $request->get('title');
-            $news->content = $request->get('content');
+        $validator = \Validator::make($request->input(), [
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status'=> 'uFails','messages' => $validator->messages()]);
         }
-        /*if(!$news->save()){
-            return response()->json([
-                'error' => true,
-                'errors' => $news->errors()
-            ]);
-
-        }*/
-        return $news->save();
-    }
-
-    public function update(Request $request, $id)
-    {
-        $news = News::find($id);
-        /*if(is_null($news))  {
-            return response()
-                ->json(['error' => 'News id='.$id.' dont exist']);
-        }else {
-
-        }*/
+        $news = new News();
         $news->title = $request->get('title');
         $news->content = $request->get('content');
         $news->save();
-        return $news;
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Created'
+        ]);
     }
 
+    /*
+     * parameter ($request['title', 'content',..], 'id') is require
+     * return to json [string 'status', string 'message' ]
+     * status have three values:
+     *  'success' is everything good,
+     *  'uFails' is user fails,
+     *  'nFails' is something fails the same 404, etc..
+     * */
+    public function update(Request $request, $id)
+    {
+
+        $validator = \Validator::make($request->input(), [
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+        if($validator->fails()) {
+            return response()->json([
+                'status' => 'uFails',
+                'messages' => $validator->message()
+            ]);
+        }
+        $news = News::find($id);
+
+        if(is_null($news)) {
+            return response()
+                ->json([
+                    'status' => 'nFails',
+                    'message' => 'News id='.$id.' do not exist'
+                ]);
+        }else {
+            $news->title = $request->get('title');
+            $news->content = $request->get('content');
+            $news->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Uploaded'
+            ]);
+        }
+    }
 }
