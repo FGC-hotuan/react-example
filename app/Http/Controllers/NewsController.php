@@ -62,7 +62,7 @@ class NewsController extends Controller{
         if($validator->fails()) {
             return response()->json([
                 'status' => 'uFails',
-                'messages' => $validator->message()
+                'messages' => $validator->messages()
             ]);
         }
         $news = News::find($id);
