@@ -30,7 +30,7 @@ apt-get -y install php7.2
 yes | cp -rf /vagrant/data/php/php.ini /etc/php/7.2/apache2/php.ini
 yes | cp -rf /vagrant/data/php/php-cli.ini /etc/php/7.2/cli/php.ini
 
-apt-get -y install php7.2-mysql php7.2-curl php7.2-mbstring
+apt-get -y install php7.2-mysql php7.2-curl php7.2-mbstring php7.2-xml
 
 
 # phpMyAdmin
