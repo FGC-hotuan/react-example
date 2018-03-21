@@ -33,3 +33,4 @@ Route::group([
 Route::get('news','NewsController@index');
 Route::post('news','NewsController@store');
 route::post('news/{id}','NewsController@update');
+route::delete('news/{id}','NewsController@destroy');

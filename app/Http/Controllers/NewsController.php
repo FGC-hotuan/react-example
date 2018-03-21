@@ -83,4 +83,29 @@ class NewsController extends Controller{
             ]);
         }
     }
+
+    public function destroy($id)
+    {
+        $news = $news = News::find($id);
+        if (is_null($news)) {
+            return response()->json([
+                'status' => 'nFails',
+                'message' => 'News id='.$id.' do not exist'
+            ]);
+        }
+        try{
+            $news->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'deleted'
+            ]);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json([
+                'status' => 'nFails',
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 }
