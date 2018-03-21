@@ -30,3 +30,6 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+Route::get('news','NewsController@index');
+Route::post('news','NewsController@store');
+route::post('news/{id}','NewsController@update');
