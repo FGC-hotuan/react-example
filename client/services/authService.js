@@ -48,14 +48,14 @@ export function verifyToken() {
 }
 
 export function logout() {
-    // return function (dispatch) {
+    return function (dispatch) {
 
-        // dispatch({type: ActionType.LOG_OUT});
+        dispatch({type: ActionType.LOG_OUT});
 
         clearToken();
 
         window.location.href = AppConstant.ROOT_URL;
-    // };
+    };
 }
 
 export function authErrorHandler(dispatch, error, type) {
