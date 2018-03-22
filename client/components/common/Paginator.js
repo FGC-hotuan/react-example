@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
+import _ from 'lodash';
 
 class Paginator extends React.Component {
 	constructor(props) {
@@ -18,7 +19,10 @@ class Paginator extends React.Component {
 				onPageChange={this.props.onPageChange}
 				containerClassName={"pagination"}
 				subContainerClassName={"pages pagination"}
-				activeClassName={"active"} />
+				activeClassName={"active"}
+                initialPage={_.get(this.props, 'currentPage', 0)}
+                disableInitialCallback={true}
+			/>
 		);
 	}
 }

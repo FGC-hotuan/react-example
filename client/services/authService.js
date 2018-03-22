@@ -23,12 +23,12 @@ export function login({email, password}) {
         axios.post(AppConstant.API_URL + 'auth/login', {email, password}).then((response) => {
             dispatch({
                 type: ActionType.LOG_IN_SUCCESS,
-                payload: response.data.token
+                payload: response.data.access_token
             });
 
-            setToken(response.data.token);
+            setToken(response.data.access_token);
 
-            window.location.href = AppConstant.ROOT_URL + 'dashboard';
+            window.location.href = AppConstant.ROOT_URL;
         })
             .catch((error) => {
                 authErrorHandler(dispatch, error.response, ActionType.LOG_IN_FAILURE);

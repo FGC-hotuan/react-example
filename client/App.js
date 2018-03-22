@@ -30,11 +30,11 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/login" component={LoginForm}/>
 
-                        <Route exact path="/" component={Dashboard}/>
+                        <Route exact path="/" component={News}/>
 
                         <PrivateRoute path="/user" component={User} />
                         <PrivateRoute path="/product" component={Product} />
-                        <PrivateRoute path="/news" component={News} />
+                        <Route path="/news" component={News} />
 
                         <Route path="*" component={NotFoundPage}/>
                     </Switch>

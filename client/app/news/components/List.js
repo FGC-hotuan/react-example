@@ -32,10 +32,19 @@ class List extends Component {
     }
 
     fetchNews(params = {}) {
+        // console.log('fetching news');
+        // this.setState({
+        //     a: 1
+        // });
+        // return;
         ApiService.get('news', params).then((response) => {
+            console.log(response);
             this.setState({
                 models: _.get(response, 'data.data', []),
-                meta: _.get(response, 'data.meta', {})
+                meta: {
+                    pageCount: Math.ceil(_.get(response, 'data.total', 0) / _.get(response, 'data.per_page', 1)),
+                    currentPage: _.get(response, 'data.current_page', 0)
+                }
             });
         });
     }
@@ -56,10 +65,13 @@ class List extends Component {
                 {listNews}
                 <div>
                     <Paginator
-                        pageCount={this.state.meta.pagination.total_pages}
+                        pageCount={this.state.meta.pageCount}
                         onPageChange={(data) => {
-                            this.fetchNews({page: data.selected});
-                        }}/>
+                            this.setState({models: null});
+                            this.fetchNews({page: data.selected + 1});
+                        }}
+                        currentPage={this.state.meta.currentPage - 1}
+                    />
                 </div>
             </div>
         );
