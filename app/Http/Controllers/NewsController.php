@@ -40,7 +40,8 @@ class NewsController extends Controller{
         $news->save();
         return response()->json([
             'status' => 'success',
-            'message' => 'Created'
+            'message' => 'Created',
+            'model' => $news,
         ]);
     }
 

@@ -17,10 +17,10 @@ export default class ApiService {
         return this.request(options);
     }
 
-    static post(path, params, options = {}) {
+    static post(path, data, options = {}) {
         options.method = 'post';
         options.url = path;
-        options.params = params;
+        options.data = data;
 
         return this.request(options);
     }

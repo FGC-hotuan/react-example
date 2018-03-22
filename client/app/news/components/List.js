@@ -32,11 +32,6 @@ class List extends Component {
     }
 
     fetchNews(params = {}) {
-        // console.log('fetching news');
-        // this.setState({
-        //     a: 1
-        // });
-        // return;
         ApiService.get('news', params).then((response) => {
             console.log(response);
             this.setState({
