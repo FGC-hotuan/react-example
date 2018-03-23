@@ -15,9 +15,9 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/upload/'.date("Y-m-d"));
+            $path = $request->file('image')->store('public/upload/'.date("Y/m/d"));
             $arrPath = explode('/',$path);
-            $sortPath = date("Y-m-d").'/'.last($arrPath);
+            $sortPath = date("Y/m/d").'/'.last($arrPath);
             $fullPath = asset($this->domain.'/storage/upload/'.$sortPath);
             return response()->json(['fullPath' => $fullPath,'sortPath' => $sortPath]);
         }else{

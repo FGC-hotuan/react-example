@@ -4,11 +4,7 @@ body{
     font-family: "Tahoma", Helvetica, Arial sans-serif;
     font-size: 0.9em;
     line-height: 1.5em;
-}
-#app{
-    width: 980px;
-    margin: 0 auto;
-    padding: 8px;
+    background-color: #333;
 }
 a{
     text-decoration: none;
@@ -21,6 +17,23 @@ clearfix:after{
     display:block;
     clear:both;
     content:"";
+}
+#app{
+    width: 980px;
+    margin: 0 auto;
+    display: block;
+}
+#app >div:first-child{
+    background-color: #fff;
+    display: block;
+    float: left;
+    padding: 8px;
+    width: 964px;
+}
+#app > div > div:first-child > h2{
+    text-align: center;
+    font-size: 2em;
+    color: #f94407;
 }
 .news{
     display: block;
@@ -44,8 +57,10 @@ clearfix:after{
 }
 .pagination{
     display: block;
-    width: 100%;
+    width: 964px;
     float: left;
+    /*! margin: 0; */
+    padding: 0;
 }
 ul.pagination > li a{
     float: left;
