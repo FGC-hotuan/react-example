@@ -24,7 +24,7 @@ class ListItem extends Component {
                         {model.title}
                     </Link>
                 </h3>
-                <p className="news-content">{model.content}</p>
+                <p className="news-content">{model.content_truncated}</p>
             </div>
         );
     }

@@ -36,32 +36,41 @@ class Detail extends Component {
         );
 
         return (
-            <div className="news">
-                <h3 className="news-title">{model.title}</h3>
-                <div className="news-content">
-                    <div dangerouslySetInnerHTML={{__html: model.content}} />
+            <div>
+                <ul className="breadcrumb">
+                    <li>
+                        <Link to="/">
+                            Home
+                        </Link>
+                    </li>
+                </ul>
+                <div className="news">
+                    <h3 className="news-title">{model.title}</h3>
+                    <div className="news-content">
+                        <div dangerouslySetInnerHTML={{__html: model.content}}/>
                     </div>
 
-                <p>{model.created_at}</p>
-                <p>{Moment(model.created_at).format('DD/MM/YYYY hh:ss')}</p>
-                <hr/>
-                <p>
-                    <Link to={`/news/${model.id}/edit`} className="btn btn-primary">
-                        Edit
-                    </Link>
-                    {' | '}
-                    <button onClick={() => {
-                        if (confirm('Are you sure want to delete this news?')) {
-                            ApiService.delete(`/news/${model.id}`).then((response) => {
-                                if (_.get(response, 'data.status') === "success") {
-                                    this.props.history.push('/news');
-                                }
-                            });
-                        }
-                    }}>
-                        Delete
-                    </button>
-                </p>
+                    <p>{model.created_at}</p>
+                    <p>{Moment(model.created_at).format('DD/MM/YYYY hh:ss')}</p>
+                    <hr/>
+                    <p>
+                        <Link to={`/news/${model.id}/edit`} className="btn btn-primary">
+                            Edit
+                        </Link>
+                        {' | '}
+                        <button onClick={() => {
+                            if (confirm('Are you sure want to delete this news?')) {
+                                ApiService.delete(`/news/${model.id}`).then((response) => {
+                                    if (_.get(response, 'data.status') === "success") {
+                                        this.props.history.push('/news');
+                                    }
+                                });
+                            }
+                        }}>
+                            Delete
+                        </button>
+                    </p>
+                </div>
             </div>
         );
     }
