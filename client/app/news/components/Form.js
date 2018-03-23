@@ -16,6 +16,7 @@ import ApiService from "../../../services/ApiService";
 import Dropzone from "react-dropzone";
 import renderText from "../../../components/common/form/renderText";
 import {Link} from "react-router-dom";
+import {Editor} from '@tinymce/tinymce-react';
 
 
 class Form extends Component {
@@ -28,10 +29,21 @@ class Form extends Component {
 
     componentDidMount() {
         const modelId = this.props.match.params.id;
-        if (!modelId) return;
+        if (!modelId) { // create form
+            // tinymce.init({
+            //     selector: '#content',
+            //     plugins : 'advlist autolink link image lists charmap print preview'
+            // });
+            return;
+        }
 
+        // update form
         ApiService.get('news/' + modelId).then((response) => {
             this.props.initialize(_.get(response, 'data', {}));
+            // tinymce.init({
+            //     selector: '#content',
+            //     plugins : 'advlist autolink link image lists charmap print preview'
+            // });
         });
     }
 
@@ -40,7 +52,6 @@ class Form extends Component {
 
         if (modelId) {
             return ApiService.post('news/' + modelId, formProps).then((response) => {
-                console.log(response);
                 if (_.get(response, 'data.status') === "success") {
                     this.props.history.push('/news/' + modelId);
                 }
@@ -54,9 +65,19 @@ class Form extends Component {
         }
     }
 
+    renderTinyMCE(field) {
+        const props = _.assign({}, field, {
+            plugins: 'link,image,lists,paste,code,preview'
+        });
+
+        return (<Editor {...props} value={props.input.value} onEditorChange={(content) => {
+            field.input.onChange(content);
+        }} />);
+    }
+
     render() {
         const {handleSubmit, submitting, pristine, match} = this.props;
-        const modelId = match.id;
+        const modelId = match.params.id;
 
         return (
             <div className="row">
@@ -87,7 +108,6 @@ class Form extends Component {
                                         multiple={false}
                                         accept="image/*"
                                         onDrop={(acceptedFiles) => {
-                                            console.log(acceptedFiles);
                                             let data = new FormData();
                                             data.append('image', acceptedFiles[0]);
 
@@ -110,13 +130,17 @@ class Form extends Component {
                             <div>
                                 <label>Content</label>
                                 <div>
-                                    <Field
-                                        id="content"
-                                        name="content"
-                                        component="textarea"
-                                        className="form-control"
-                                    />
+                                    {/*<Field*/}
+                                    {/*id="content"*/}
+                                    {/*name="content"*/}
+                                    {/*component="textarea"*/}
+                                    {/*className="form-control"*/}
+                                    {/*/>*/}
                                 </div>
+                                <Field
+                                    name="content"
+                                    component={this.renderTinyMCE}
+                                />
                             </div>
 
 
