@@ -45,7 +45,7 @@ class Detail extends Component {
                         </Link>
                     </li>
                 </ul>
-                <div className="news">
+                <div className="news details">
                     <h3 className="news-title">{model.title}</h3>
                     <div className="news-image">
                         <img src={model.image_url} alt={model.title}/>

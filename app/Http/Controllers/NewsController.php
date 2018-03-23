@@ -15,7 +15,7 @@ class NewsController extends Controller{
     public function index()
     {
 
-        $news = News::paginate(4);
+        $news = News::paginate(5);
         return response()->json($news);
     }
 
@@ -37,6 +37,7 @@ class NewsController extends Controller{
         $news = new News();
         $news->title = $request->get('title');
         $news->content = $request->get('content');
+        $news->image = $request->get('image');
         $news->save();
         return response()->json([
             'status' => 'success',
@@ -77,6 +78,7 @@ class NewsController extends Controller{
         }else {
             $news->title = $request->get('title');
             $news->content = $request->get('content');
+            $news->image = $request->get('image');
             $news->save();
             return response()->json([
                 'status' => 'success',

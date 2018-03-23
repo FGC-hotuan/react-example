@@ -21,7 +21,8 @@ class News extends Model
     protected $fillable = [];
 
     protected $appends = [
-        'content_truncated'
+        'content_truncated',
+        'image_url'
     ];
 
     /**
@@ -33,6 +34,9 @@ class News extends Model
 
     public function getContentTruncatedAttribute(){
         $content = $this->content;
-        return Str::limit($content, 100);
+        return Str::limit(strip_tags($content), 350);
+    }
+    public  function getImageUrlAttribute(){
+        return asset('http://dev.site.vn/storage/upload/'.$this->image);
     }
 }
