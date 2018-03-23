@@ -18,13 +18,13 @@ class ListItem extends Component {
         const {model} = this.props;
 
         return (
-            <div>
-                <h3>
+            <div className="news clearfix">
+                <h3 className="news-title">
                     <Link to={`/news/${model.id}`} className="btn btn-primary">
                         {model.title}
                     </Link>
                 </h3>
-                <p>{model.content}</p>
+                <p className="news-content">{model.content}</p>
             </div>
         );
     }

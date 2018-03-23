@@ -8,6 +8,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class News extends Model
 {
@@ -19,6 +20,10 @@ class News extends Model
      */
     protected $fillable = [];
 
+    protected $appends = [
+        'content_truncated'
+    ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -26,4 +31,8 @@ class News extends Model
      */
     protected $hidden = [];
 
+    public function getContentTruncatedAttribute(){
+        $content = $this->content;
+        return Str::limit($content, 100);
+    }
 }
