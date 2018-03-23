@@ -35,3 +35,5 @@ Route::post('news','NewsController@store');
 route::get('news/{id}','NewsController@show');
 route::post('news/{id}','NewsController@update');
 route::delete('news/{id}','NewsController@destroy');
+
+Route::post('file/upload','ImageController@store');
