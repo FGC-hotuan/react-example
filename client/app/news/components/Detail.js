@@ -21,10 +21,11 @@ class Detail extends Component {
         if (!modelId) return;
 
         ApiService.get('news/' + modelId).then((response) => {
-            console.log(response);
+            const model = _.get(response, 'data', {});
             this.setState({
-                model: _.get(response, 'data', {})
+                model: model
             });
+            document.title = model.title;
         });
     }
 
