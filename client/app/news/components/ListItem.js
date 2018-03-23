@@ -24,7 +24,10 @@ class ListItem extends Component {
                         {model.title}
                     </Link>
                 </h3>
-                <p className="news-content">{model.content_truncated}</p>
+                <div className="news-image">
+                    <img src={model.image_url} alt={model.title}/>
+                </div>
+                <div className="news-content">{model.content_truncated}</div>
             </div>
         );
     }
