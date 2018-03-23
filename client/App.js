@@ -10,6 +10,7 @@ import Dashboard from "./components/dashboard/dashboard";
 import User from './app/user/User'
 import Product from "./app/product/Product";
 import News from "./app/news/News";
+import AuthorizedRoute from "./components/auth/AuthorizedRoute";
 
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route
@@ -28,12 +29,12 @@ class App extends Component {
             <BrowserRouter basename="/#">
                 <div>
                     <Switch>
-                        <Route exact path="/login" component={LoginForm}/>
+                        <Route exact path="/auth/login" component={LoginForm}/>
 
                         <Route exact path="/" component={News}/>
 
-                        <PrivateRoute path="/user" component={User} />
-                        <PrivateRoute path="/product" component={Product} />
+                        <AuthorizedRoute path="/user" component={User} />
+                        <AuthorizedRoute path="/product" component={Product} />
                         <Route path="/news" component={News} />
 
                         <Route path="*" component={NotFoundPage}/>

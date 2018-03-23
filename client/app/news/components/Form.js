@@ -13,6 +13,9 @@ import * as flashMessage from '../../../actions/flashMessage';
 import * as newsAction from '../meta/action';
 
 import ApiService from "../../../services/ApiService";
+import Dropzone from "react-dropzone";
+import renderText from "../../../components/common/form/renderText";
+import {Link} from "react-router-dom";
 
 
 class Form extends Component {
@@ -35,8 +38,6 @@ class Form extends Component {
     onHandleSubmit(formProps) {
         const modelId = this.props.match.params.id;
 
-        // this.props.actions.submitForm(Common.PRODUCT, formProps, this.props.params.id);
-        // this.props.actions.submitForm(Common.PRODUCT, this.props.selectedItem.product, this.props.params.id);
         if (modelId) {
             return ApiService.post('news/' + modelId, formProps).then((response) => {
                 console.log(response);
@@ -81,9 +82,36 @@ class Form extends Component {
                             </div>
 
                             <div>
+                                <div className="drop-zone">
+                                    <Dropzone
+                                        multiple={false}
+                                        accept="image/*"
+                                        onDrop={(acceptedFiles) => {
+                                            console.log(acceptedFiles);
+                                            let data = new FormData();
+                                            data.append('image', acceptedFiles[0]);
+
+                                            ApiService.post('file/upload', data)
+                                                .then((response) => {
+                                                    this.props.change("image", _.get(response, "data.sortPath"));
+                                                    document.getElementById("image-preview").setAttribute("src", _.get(response, "data.fullPath"));
+                                                });
+                                        }}
+                                    >
+                                        <div>Try dropping some files here, or click to select files to upload.</div>
+                                    </Dropzone>
+                                </div>
+                                <div className="img-preview">
+                                    <img src="http://via.placeholder.com/350x150" alt="" id="image-preview"/>
+                                    <Field name="image" component="input" type="hidden"/>
+                                </div>
+                            </div>
+
+                            <div>
                                 <label>Content</label>
                                 <div>
                                     <Field
+                                        id="content"
                                         name="content"
                                         component="textarea"
                                         className="form-control"
@@ -95,6 +123,10 @@ class Form extends Component {
                             <div className="box-footer">
                                 <div className="col-xs-6">
                                     <div className="form-group">
+                                        <Link to={`/news/${modelId}`}>
+                                            Cancel
+                                        </Link>
+                                        {' | '}
                                         <button type="submit"
                                                 className="btn btn-primary"
                                                 disabled={submitting || pristine}>{modelId ? 'Update' : 'Save'}</button>
