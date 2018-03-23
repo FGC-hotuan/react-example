@@ -36,9 +36,9 @@ class Detail extends Component {
         );
 
         return (
-            <div>
-                <h3>{model.title}</h3>
-                <div>{model.content}</div>
+            <div className="news">
+                <h3 className="news-title">{model.title}</h3>
+                <div className="news-content">{model.content}</div>
                 <p>{model.created_at}</p>
                 <p>{Moment(model.created_at).format('DD/MM/YYYY hh:ss')}</p>
                 <hr/>

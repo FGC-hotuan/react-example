@@ -1,0 +1,104 @@
+body{
+    margin: 0 !important;
+    color: #444;
+    font-family: "Tahoma", Helvetica, Arial sans-serif;
+    font-size: 0.9em;
+    line-height: 1.5em;
+}
+#app{
+    width: 980px;
+    margin: 0 auto;
+    padding: 8px;
+}
+a{
+    text-decoration: none;
+    color:#009999;
+}
+ul li{
+    list-style: none;
+}
+clearfix:after{
+    display:block;
+    clear:both;
+    content:"";
+}
+.news{
+    display: block;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+.news-title{
+    margin:0 0 8px 0;
+    padding: 5px;
+    border-bottom: 3px solid #4CAF50;
+    color:#009999;
+}
+.news-content{
+    text-align: justify;
+    color: #5F5F5F;
+}
+.news-content::first-letter{
+    font-size: 200%;
+    color: #F34237;
+}
+.pagination{
+    display: block;
+    width: 100%;
+    float: left;
+}
+ul.pagination > li a{
+    float: left;
+    display: block;
+    border: 1px solid #3c3c3c;
+    padding: 2px 8px;
+    margin: 0 3px;
+}
+ul.pagination > li:hover a{
+    background-color: #009688;
+    cursor: context-menu;
+}
+ul.pagination > li:hover a{
+    color: #fff;
+}
+
+.box .box-title{
+    text-align: center;
+    color: #009999;
+    font-size: 26px;
+}
+.box label{
+    margin: 5px 0px;
+    float: left;
+    display: block;
+    width: 100%;
+}
+.box input{
+    width: 98%;
+    padding: 6px;
+}
+.box textarea{
+    width: 98%;
+    height: 400px;
+    padding: 6px;
+}
+.btn,
+button{
+    padding: 6px 25px;
+    color: #fff;
+    background-color: #009999;
+    border: 1px solid #3c3c3c;
+    margin: 5px 0;
+    font-weight: bold;
+}
+.btn:hover,
+button:hover{
+    background-color: #007777;
+}
+button[disabled]{
+    background-color:#123834;
+    opacity: 0.3
+}
+button[disabled]:hover{
+    background-color:#123834 !important;;
+}

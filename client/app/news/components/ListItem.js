@@ -20,7 +20,7 @@ class ListItem extends Component {
         return (
             <div className="news clearfix">
                 <h3 className="news-title">
-                    <Link to={`/news/${model.id}`} className="btn btn-primary">
+                    <Link to={`/news/${model.id}`}>
                         {model.title}
                     </Link>
                 </h3>
