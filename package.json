@@ -34,7 +34,13 @@
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "sweetalert": "^2.1.0",
+
+    "react-dates": "^16.4.0",
+    "react-select": "^1.2.1",
+    "jquery": "^3.3.1",
+    "bootstrap": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
